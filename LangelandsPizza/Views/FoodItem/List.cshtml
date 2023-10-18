@@ -1,0 +1,25 @@
+﻿@using LangelandsPizza.Models
+@model IEnumerable<FoodItem>
+
+@{
+    
+}
+
+<body>
+    <h1>Alle Pizzaer</h1>
+
+    @{
+        foreach (var food in Model){
+
+                <div>
+                    <h2>Pizza type: @food.Name </h2>
+                    <p>Pris: @food.Price.ToString("c")</p> @{//type C efter to string betyder at den skal vise det som penge//
+                       }
+                    <p>Kategori: @food.Category.Name</p>
+
+                </div>
+        }
+    }
+   
+
+</body>
