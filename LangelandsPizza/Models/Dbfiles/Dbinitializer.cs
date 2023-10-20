@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LangelandsPizza.Models.Dbfiles
 {
-    public class Dbinitializer // initializes database if no data is found
+    public class Dbinitializer // initializes data in database if no data is found
     {
         public static void Initializer(IApplicationBuilder applicationBuilder)
         {
