@@ -14,7 +14,7 @@ namespace LangelandsPizza.Controllers
             _foodItem = foodItem;
         }   
 
-        public ViewResult List()
+        public ViewResult Index()
         {
             var food = _foodItem.GetFoodItems();
             return View(food);

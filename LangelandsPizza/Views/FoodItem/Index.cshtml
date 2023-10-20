@@ -1,0 +1,48 @@
+﻿@using LangelandsPizza.Models
+@model IEnumerable<FoodItem>
+@{ 
+
+}
+
+<body>
+    <div class="row">
+        <div class="col-md8 ofset-md-2">
+            <table class="table"> 
+                <thead>
+                    <th> Navn på varen  </th>
+                    <th> Pris  </th>
+                    <th> Kategori  </th>
+                    <th> Start din bestilling </th>
+                
+                </thead>
+                <tbody>
+                
+
+
+
+    @{
+        foreach (var food in Model){
+
+                <tr>
+                    <td class="align-middle">
+                    <p>@food.Name</p>
+                    </td>
+
+                    <td class="align-middle">
+                    <p>@food.Price.ToString("c")</p> @{//type C efter to string betyder at den skal vise det som penge//
+                       }
+                       </td>
+                   
+                       <td class="align-middle">
+                       <p>@food.Category.Name</p>
+                       </td>
+
+                       <td class="align-middle">
+                       <a class="btn btn-outline-primary">placer varen i kurven</a>
+                       </td>
+                </tr>
+        }
+    }
+   <tbody>
+    </table>
+</body>
