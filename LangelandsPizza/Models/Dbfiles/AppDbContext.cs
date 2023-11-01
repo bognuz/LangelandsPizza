@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LangelandsPizza.Models.ShopingCart;
+using Microsoft.EntityFrameworkCore;
 
 namespace LangelandsPizza.Models.Dbfiles
 {
@@ -12,6 +13,8 @@ namespace LangelandsPizza.Models.Dbfiles
 
         public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<Category> Category { get; set; }   
+
+        public DbSet<ShopingCartItem> ShopingCartItem { get; set; }
 
     }
 }
