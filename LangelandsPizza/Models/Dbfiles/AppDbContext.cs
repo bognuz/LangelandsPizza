@@ -5,7 +5,7 @@ namespace LangelandsPizza.Models.Dbfiles
 {
     public class AppDbContext : DbContext
     {
-        //files bruges som mellemled mellem database og models. 
+        //fil bruges som mellemled mellem database og models. 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 

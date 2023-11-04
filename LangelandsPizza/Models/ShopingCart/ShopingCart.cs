@@ -20,7 +20,7 @@ namespace LangelandsPizza.Models.ShopingCart
             _Context = context;
         }
         
-
+        //method is used to ensure that each user have their own basket
         public static ShopingCart CheckSession(IServiceProvider services) //check if there is a session with that card id and if not create a new  sessionid
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session; //if not null create new
