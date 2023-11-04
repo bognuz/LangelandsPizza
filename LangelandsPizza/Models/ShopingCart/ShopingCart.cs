@@ -93,7 +93,7 @@ namespace LangelandsPizza.Models.ShopingCart
 
         public double GetShoppingCartTotal() //Calcutale total price of the shopingcart
         {
-            var total = _Context.ShopingCartItem.Where(n => ShopingCartID == ShopingCartID).Select(n => n.FoodItem.Price * n.Amount).Sum();
+            var total = _Context.ShopingCartItem.Where(n => n.ShopingCartID == ShopingCartID).Select(n => n.FoodItem.Price * n.Amount).Sum();
             return total;
         }
 

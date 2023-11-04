@@ -39,7 +39,7 @@ Dbinitializer.Initializer(app);
 
 app.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+        pattern: "{controller=FoodItem}/{action=Index}/{id?}");
 
 
 app.Run();

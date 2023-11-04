@@ -52,6 +52,21 @@ namespace LangelandsPizza.Controllers
         }
 
 
+        public RedirectToActionResult RemoveFromShopingCart(int id)
+        {
+            var item = _shopingcart.AddItemByID(id);
+
+            if (item != null)
+            {
+                _shopingcart.RemoveItemFromCart(item);
+
+            }
+            return RedirectToAction(nameof(Index));
+
+
+        }
+
+
     }
     }
 
