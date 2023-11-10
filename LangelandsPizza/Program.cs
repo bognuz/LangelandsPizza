@@ -1,4 +1,6 @@
 using LangelandsPizza.Models.Dbfiles;
+using LangelandsPizza.Models.Interfaces;
+using LangelandsPizza.Models.Repository;
 using LangelandsPizza.Models.ShopingCart;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//gets checksession method to work 
 builder.Services.AddScoped(sc => ShopingCart.CheckSession(sc));//gets checksession method to work 
 builder.Services.AddSession();
+builder.Services.AddTransient<IAllOrders, OrderFunctions>();
 
 
 var app = builder.Build();

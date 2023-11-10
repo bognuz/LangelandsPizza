@@ -1,6 +1,50 @@
-﻿@page
-@model LangelandsPizza.Views.Order.IndexModel
-@{
-}
+﻿@using LangelandsPizza.Models.Order
+@model Order
 
-<h1>Hello World!</h1>
+<div class="row">
+<h3>Udfyld venligst personlige oplysninger</h3>*
+
+<form asp-controller="Order" asp-action="CheckOut" method="post">
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <div class="col-md-5">
+            <input asp-for="Name" class="formcontrol" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname"></label>
+        <div class="col-md-5">
+            <input asp-for="Surname" class="formcontrol" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <div class="col-md-5">
+            <input asp-for="Email" class="formcontrol" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="TelefonNumber"></label>
+        <div class="col-md-5">
+            <input asp-for="TelefonNumber" class="formcontrol" />
+            <span asp-validation-for="TelefonNumber" class="text-danger"></span>
+        </div>
+
+    </div>
+
+        <div class="col-md-5">
+            <button type="submit" class="btn btn-outline-success">
+                Send order
+            </button>
+        </div>
+
+
+
+
+
+</form>
+   
