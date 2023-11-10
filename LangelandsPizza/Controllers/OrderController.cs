@@ -29,16 +29,10 @@ namespace LangelandsPizza.Controllers
         [HttpPost]
         public IActionResult CheckOut(Order Order)
         {
-          
-            var items = _shopingCart.GetShopingCartItems();
-            foreach (var item in items)
-            {
-                
-            }
-            
+         
             _orders.CreateAndStoreOrder(Order);
 
-            return View(); //gemmer data i tekstbokse
+            return View();
         }
 
 
