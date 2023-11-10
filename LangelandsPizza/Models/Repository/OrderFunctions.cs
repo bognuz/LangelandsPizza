@@ -1,6 +1,7 @@
 ﻿using LangelandsPizza.Models.Dbfiles;
 using LangelandsPizza.Models.Interfaces;
 using LangelandsPizza.Models.Order;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace LangelandsPizza.Models.Repository
@@ -48,5 +49,13 @@ namespace LangelandsPizza.Models.Repository
             _context.SaveChanges();
 
         }
+
+
+        public List<Order.Order> GetOrders()
+        {
+            var list = _context.Order.Include(a => a.OrderItems).ThenInclude(a => a.FoodItem).ToList();
+            return list;
+        }
+
     }
 }

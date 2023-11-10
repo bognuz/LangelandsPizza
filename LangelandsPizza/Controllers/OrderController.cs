@@ -35,6 +35,13 @@ namespace LangelandsPizza.Controllers
             return View();
         }
 
+        public IActionResult ShowOrders()
+        {
+            var orders = _orders.GetOrders();
+            return View(orders);
+
+        }
+
 
 
      
