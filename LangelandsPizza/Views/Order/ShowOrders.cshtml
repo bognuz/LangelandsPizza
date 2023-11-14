@@ -1,5 +1,7 @@
 ﻿@using LangelandsPizza.Models.Order
 @model IEnumerable<Order>
+
+
 <div class="row">
     <div class="col-md-8 offset-2">
         <p>
@@ -10,7 +12,11 @@
             <thead>
                 <tr>
                     <th>Order Nummer</th>
-                    <th>Bestilling</th>
+                    <th>Brugerens bestilling</th>
+                    <th>Bestillerens Navn</th>
+                    <th>Bestillerens Efternavn</th>
+                    <th>Email</th>
+                    <th>Mobil Nummer</th>
                     <th>Pris</th>
                  
                 </tr>
@@ -26,12 +32,35 @@
                             {
                                 <li>
                                     <div class="alert alert-info" role="alert">
-                                        <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] - @item.FoodItem.Name
+                                        <span class="badge bg-success">@item.Amount</span> - @item.FoodItem.Name 
                                     </div>
                                 </li>
                             }
                         </ul>
                     </td>
+                   
+                    
+                    
+                    <td class ="align-middle">
+
+                        @order.Name
+                    </td>
+                    
+                      <td class ="align-middle">
+
+                        @order.Surname
+                    </td>
+
+                      <td class ="align-middle">
+
+                        @order.Email
+                    </td>
+
+                        <td class ="align-middle">
+
+                        @order.TelefonNumber
+                    </td>
+                    
                     <td class="align-middle">
                         @order.OrderItems.Select(m => m.FoodItem.Price * m.Amount).Sum().ToString("c")
                     </td>
