@@ -32,5 +32,7 @@ namespace LangelandsPizza.Models.Order
 
       
         public List<OrderItem> OrderItems { get; set;  }
+
+        public bool isCompleted { get; set;  }
     }
 }

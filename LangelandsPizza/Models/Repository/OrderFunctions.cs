@@ -22,10 +22,11 @@ namespace LangelandsPizza.Models.Repository
 
             var temp = new Order.Order()
             {
-               Name = order.Name,
-               Surname = order.Surname,
-               Email = order.Email,
-               TelefonNumber = order.TelefonNumber
+                Name = order.Name,
+                Surname = order.Surname,
+                Email = order.Email,
+                TelefonNumber = order.TelefonNumber,
+                isCompleted = false
             };
 
             _context.Order.Add(temp);
@@ -50,12 +51,30 @@ namespace LangelandsPizza.Models.Repository
 
         }
 
-
-        public List<Order.Order> GetOrders()
+        public List<Order.Order> GetCompletedOrders()
         {
-            var list = _context.Order.Include(a => a.OrderItems).ThenInclude(a => a.FoodItem).ToList();
+            var list = _context.Order.Include(a => a.OrderItems).ThenInclude(a => a.FoodItem).Where(n => n.isCompleted == true).ToList();
             return list;
         }
+
+        public List<Order.Order> GetNotCompletedOrders()
+        {
+            var list = _context.Order.Include(a => a.OrderItems).ThenInclude(a => a.FoodItem).Where(n => n.isCompleted == false).ToList();
+            return list;
+        }
+
+        public void MarkOrderAsComplete(int orderID)
+        {
+            var order = _context.Order.FirstOrDefault(n => n.Id == orderID);
+
+            if(order != null)
+            {
+                order.isCompleted = true;
+                _context.SaveChanges();
+            
+            }
+        }
+
 
     }
 }

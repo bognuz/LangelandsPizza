@@ -15,6 +15,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//get
 builder.Services.AddScoped(sc => ShopingCart.CheckSession(sc));//gets checksession method to work 
 builder.Services.AddSession();
 builder.Services.AddTransient<IAllOrders, OrderFunctions>();
+builder.Services.AddTransient<IFoodItem, FoodItemFunctions>();
 
 
 var app = builder.Build();

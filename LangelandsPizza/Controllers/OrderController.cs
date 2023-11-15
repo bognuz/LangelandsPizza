@@ -29,17 +29,29 @@ namespace LangelandsPizza.Controllers
         [HttpPost]
         public IActionResult CheckOut(Order Order)
         {
-         
+            
             _orders.CreateAndStoreOrder(Order);
 
             return View();
         }
 
-        public IActionResult ShowOrders()
+        public IActionResult ShowNotCompletedOrders()
         {
-            var orders = _orders.GetOrders();
+            var orders = _orders.GetNotCompletedOrders();
             return View(orders);
+        }
 
+        public IActionResult ShowCompletedOrders()
+        {
+            var orders = _orders.GetCompletedOrders();
+            return View(orders);
+        }
+
+
+        public IActionResult MarkOrderAsCompleted(int orderID)
+        {
+            _orders.MarkOrderAsComplete(orderID);
+            return RedirectToAction("ShowNotCompletedOrders");
         }
 
 

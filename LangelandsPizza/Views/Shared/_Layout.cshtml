@@ -24,8 +24,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="FoodItem" asp-action="Index">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="ShowOrders">Vis Ordrer</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="ShowNotCompletedOrders">Vis igangværende ordrer</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="ShowCompletedOrders">Vis afsluttede ordrer</a>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>

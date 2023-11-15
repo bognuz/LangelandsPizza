@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LangelandsPizza.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231110145757_OrdersUpdate")]
-    partial class OrdersUpdate
+    [Migration("20231115180158_orders1")]
+    partial class orders1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,6 +92,9 @@ namespace LangelandsPizza.Migrations
                         .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
+
+                    b.Property<bool>("isCompleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

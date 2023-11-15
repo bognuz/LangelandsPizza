@@ -5,25 +5,25 @@
 namespace LangelandsPizza.Migrations
 {
     /// <inheritdoc />
-    public partial class ShopingCart2 : Migration
+    public partial class orders1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "ShopingCartID",
-                table: "ShopingCartItem",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<bool>(
+                name: "isCompleted",
+                table: "Order",
+                type: "bit",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: false);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ShopingCartID",
-                table: "ShopingCartItem");
+                name: "isCompleted",
+                table: "Order");
         }
     }
 }

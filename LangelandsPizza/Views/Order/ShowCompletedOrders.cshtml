@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using LangelandsPizza.Models.Order
+@model IEnumerable<Order>
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Afsluttede ordrer</h4>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order Nummer</th>
+                    <th>Brugerens bestilling</th>
+                    <th>Bestillerens Navn</th>
+                    <th>Bestillerens Efternavn</th>
+                    <th>Email</th>
+                    <th>Mobil Nummer</th>
+                    <th>Pris</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@order.Id</td>
+                        <td class="align-middle">
+                            <ul style="list-style-type:none">
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <li>
+                                        <div class="alert alert-info" role="alert">
+                                            <span class="badge bg-success">@item.Amount</span> - @item.FoodItem.Name
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td class="align-middle">@order.Name</td>
+                        <td class="align-middle">@order.Surname</td>
+                        <td class="align-middle">@order.Email</td>
+                        <td class="align-middle">@order.TelefonNumber</td>
+                        <td class="align-middle">@order.OrderItems.Select(m => m.FoodItem.Price * m.Amount).Sum().ToString("c")</td>
+                        <td class="align-middle">
+                        
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
