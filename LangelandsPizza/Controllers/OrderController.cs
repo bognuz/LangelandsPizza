@@ -23,17 +23,29 @@ namespace LangelandsPizza.Controllers
             _shopingCart = shoppingCart;
         }
 
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
+            var items = _shopingCart.GetShopingCartItems();
+
+
+            if (items.Count == 0)
+            {
+                TempData["OrdreFejl"] = "Fejl du skal have varene i kurven";
+                return RedirectToAction("Index", "ShopingCart");
+            }
+
+            TempData.Remove("OrdreFejl");
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult CheckOut(Order Order)
         {
             
             _orders.CreateAndStoreOrder(Order);
+            _shopingCart.RemoveItemsFromDisposedShoppingCart();
 
             return View();
         }

@@ -97,7 +97,13 @@ namespace LangelandsPizza.Models.ShopingCart
             return total;
         }
 
+        public void RemoveItemsFromDisposedShoppingCart() //When order is done
+        {
+            var remove = _Context.ShopingCartItem.Where(n => n.ShopingCartID == ShopingCartID).ToList();
 
+            _Context.ShopingCartItem.RemoveRange(remove);
+         
+        }
 
     }
 

@@ -2,6 +2,7 @@ using LangelandsPizza.Models.Dbfiles;
 using LangelandsPizza.Models.Interfaces;
 using LangelandsPizza.Models.Repository;
 using LangelandsPizza.Models.ShopingCart;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,13 @@ builder.Services.AddTransient<IFoodItem, FoodItemFunctions>();
 
 //Authentication
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddAuthentication();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Log user out after 30 mins
+            options.SlidingExpiration = true;      // extend timespan if user is active
+            
+        });
 
 
 var app = builder.Build();
