@@ -25,5 +25,43 @@ namespace LangelandsPizza.Controllers
             var model = new LoginViewModel();
             return View(model);
         }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Fooditem");
+        }
+
+        [HttpPost]
+        public async Task <IActionResult> Login(LoginViewModel login)
+        {
+            if (!ModelState.IsValid) 
+            {
+                return View(login);
+            }
+
+            var user = await _userManager.FindByEmailAsync(login.EmailAdress);
+
+            if(user != null)
+            {
+                var Check = await _userManager.CheckPasswordAsync(user, login.Password);
+                if (Check)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user, login.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Fooditem");
+                    }
+                }
+                TempData["Fejl"] = "Forkert Brugernavn eller kode, prøv igen";
+                return View(login);
+
+            }
+
+
+            TempData["Fejl"] = "Forkert Brugernavn eller kode, prøv igen";
+            return View(login);
+
+        }
     }
 }

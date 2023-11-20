@@ -9,13 +9,13 @@
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Log in to your account</h4>
+            <h4>Log ind i din konto</h4>
         </p>
 
-        @if (TempData["Error"] != null)
+        @if (TempData["Fejl"] != null)
         {
             <div class="col-md-12 alert alert-danger">
-                <span><b>test?</b> - @TempData["Error"] </span>
+                <span><b>Login Fejl</b> - @TempData["Fejl"] </span>
             </div>
         }
 
@@ -36,8 +36,8 @@
                     </div>
 
                     <div class="form-group">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
-                        <a class="btn btn-outline-secondary" asp-controller="FoodItem" asp-action="Index">Annuller</a>
+                        <input class="btn btn-outline-success float-right" type="submit" value="Log ind" />
+                        <a class="btn btn-outline-secondary" asp-controller="Order" asp-action="ShowNotCompletedOrders">Annuller</a>
                     </div>
                 </form>
             </div>

@@ -6,11 +6,14 @@ using System.Security.AccessControl;
 using LangelandsPizza.Models.Interfaces;
 using LangelandsPizza.Models.ShopingCart;
 using LangelandsPizza.Models.Order;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LangelandsPizza.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
+        
         private readonly IAllOrders _orders;
         private readonly ShopingCart _shopingCart;
 

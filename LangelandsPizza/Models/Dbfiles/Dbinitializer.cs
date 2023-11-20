@@ -83,7 +83,7 @@ namespace LangelandsPizza.Models.Dbfiles
 
                     };
 
-                    await userManager.CreateAsync(newWorkerUser, "Kode3453");
+                    await userManager.CreateAsync(newWorkerUser, "Kode3453%");
                     await userManager.AddToRoleAsync(newWorkerUser, UserRoles.User);
 
 

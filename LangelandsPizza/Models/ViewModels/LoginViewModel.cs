@@ -4,12 +4,12 @@ namespace LangelandsPizza.Models.ViewModels
 {
     public class LoginViewModel
     {
-        [Display(Name = "Skirv din mail adresse")]
-        [Required(ErrorMessage = "Du skal skrive mailadressen ind")]
+        [Display(Name = "Skriv venligst din mail adresse")]
+        [Required(ErrorMessage = "Skriv venligst din mail adresse")]
         public string EmailAdress { get; set; }
 
-        [Display(Name = "Skirv din mail adresse")]
-        [Required]
+        [Display(Name = "Skriv venligst din password")]
+        [Required(ErrorMessage = "Skriv venligst din password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
