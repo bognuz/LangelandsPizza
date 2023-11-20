@@ -1,4 +1,6 @@
 ﻿
+using LangelandsPizza.Models.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LangelandsPizza.Models.Dbfiles
@@ -48,37 +50,53 @@ namespace LangelandsPizza.Models.Dbfiles
                             CategoryID = 3
                         }
 
-                        ) ;
+                        );
                     context.SaveChanges();
                 }
             }
-        } 
 
-        //public static Dictionary<string, Category> category;
-        //public static Dictionary<string, Category> Categories
-        //{
-        //    get
-        //    {
-        //        if (category == null)
-        //        {
-        //            var list = new Category[]
-        //            {
-        //                 new Category {Name = "Speciale Pizzaer"},
-        //                 new Category { Name = "Pizzaer med skinke" },
-        //                 new Category { Name = "Mexikanske Pizzaer"}
-        //            };
 
-        //            category = new Dictionary<string, Category>();
-        //            foreach (Category element in list)
-        //            {
-        //                category.Add(element.Name, element);
-        //            }
-        //        }
 
-        //        return category;
-        //    }
-        //}
+        }
 
+        public static async void AddUsers(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                //Creating roles
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+                //Creating Users
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+                var workerUser = await userManager.FindByEmailAsync("worker@lglpizza.dk");
+
+                if (workerUser == null)
+                {
+                    var newWorkerUser = new IdentityUser()
+                    {
+                        UserName = "worker",
+                        Email = "worker@lglpizza.dk",
+                        EmailConfirmed = true
+
+                    };
+
+                    await userManager.CreateAsync(newWorkerUser, "Kode3453");
+                    await userManager.AddToRoleAsync(newWorkerUser, UserRoles.User);
+
+
+
+                }
+
+
+
+
+
+
+
+            }
+        }
     }
-
 }

@@ -1,11 +1,13 @@
-﻿using LangelandsPizza.Models.Order;
+﻿
+using LangelandsPizza.Models.Order;
 using LangelandsPizza.Models.ShopingCart;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.ConstrainedExecution;
 
 namespace LangelandsPizza.Models.Dbfiles
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext
     {
         //fil bruges som mellemled mellem database og models. 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

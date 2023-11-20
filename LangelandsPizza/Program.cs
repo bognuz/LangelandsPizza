@@ -2,6 +2,7 @@ using LangelandsPizza.Models.Dbfiles;
 using LangelandsPizza.Models.Interfaces;
 using LangelandsPizza.Models.Repository;
 using LangelandsPizza.Models.ShopingCart;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,10 @@ builder.Services.AddScoped(sc => ShopingCart.CheckSession(sc));//gets checksessi
 builder.Services.AddSession();
 builder.Services.AddTransient<IAllOrders, OrderFunctions>();
 builder.Services.AddTransient<IFoodItem, FoodItemFunctions>();
+
+//Authentication
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddAuthentication();
 
 
 var app = builder.Build();
@@ -37,9 +42,11 @@ if (!app.Environment.IsDevelopment())
     app.UseRouting();
     app.UseSession();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
 Dbinitializer.Initializer(app);
+Dbinitializer.AddUsers(app);
 
 app.MapControllerRoute(
         name: "default",
