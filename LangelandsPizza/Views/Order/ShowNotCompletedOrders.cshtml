@@ -1,6 +1,10 @@
 ﻿@using LangelandsPizza.Models.Order
 @model IEnumerable<Order>
 
+@{
+System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("da-DK");
+}
+
 <div class="row">
     <div class="col-md-8 offset-2">
         <p>
