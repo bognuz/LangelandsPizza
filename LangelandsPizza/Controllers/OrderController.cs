@@ -35,7 +35,7 @@ namespace LangelandsPizza.Controllers
                 return RedirectToAction("Index", "ShopingCart");
             }
 
-            TempData.Remove("OrdreFejl");
+            TempData.Remove("OrdreFejl"); 
             return View();
         }
 
